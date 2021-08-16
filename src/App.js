@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { Switch, Route, NavLink } from "react-router-dom";
+import AddTutorial from "./components/AddTutorial";
+import TutorialsList from "./components/TutorialsList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <div>
+        <Navbar bg="dark" variant="dark">
+          <Container>
+            <Navbar.Brand>
+              EIN<span className="text-danger">B</span>ULINDA
+            </Navbar.Brand>
+            <Nav className="me-auto">
+              <NavLink className="nav-link" to="/tutorials">
+                Tutorials
+              </NavLink>
+              <NavLink className="nav-link" to="/add">
+                Add Tutorials
+              </NavLink>
+            </Nav>
+          </Container>
+        </Navbar>
+        <Container className="mt-3">
+          <h2 className="text-center">React Firebase Database CRUD</h2>
+          <Switch>
+            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
+            <Route exact path={"/add"} component={AddTutorial} />
+          </Switch>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
